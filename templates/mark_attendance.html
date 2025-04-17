@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Mark Attendance</title>
+</head>
+<body>
+    <div class="container">
+        <center>
+        <h1>Mark Attendance</h1>
+        <form action="{{ url_for('mark_attendance') }}" method="POST">
+            <label for="student_id">Student:</label>
+            <select id="student_id" name="student_id">
+                {% for student in students %}
+                    <option value="{{ student.id }}">{{ student.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+            </select>
+            <button type="submit">Mark</button>
+        </form>
+        <a class="button-link" href="{{ url_for('index') }}">Back to Home</a>
+        </center>
+    </div>
+</body>
+</html>
